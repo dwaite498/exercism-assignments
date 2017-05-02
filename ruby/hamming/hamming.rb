@@ -1,23 +1,20 @@
 class Hamming
-    def self.compute(s, t)
-        result = nil
-        if s == t
-            result = 0
-        elsif s.length == 1
-            result = 1
-        else
-          s_split = s.split(//)
-          t_split = t.split(//)
-          dna = s_split.length
-          s_split.count.times do |i|
-            counter = 0
-            if i == t_split[i]
-                counter += 1
-                puts t_split[i]
-            end
-            puts counter
-          end
-            
+    def self.compute(strand_a, strand_b)
+      if strand_a.length != strand_b.length
+          raise ArgumentError.new("wrong number of arguments")
+      end
+      s_split = strand_a.split(//)
+      t_split = strand_b.split(//)
+      counter = 0
+      s_split.length.times do |i|
+        if s_split[i] != t_split[i]
+            counter += 1
         end
+      end
+      return counter
     end
 end
+
+   module BookKeeping
+     VERSION = 3
+   end
